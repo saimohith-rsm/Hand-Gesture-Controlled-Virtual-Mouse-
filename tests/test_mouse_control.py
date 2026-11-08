@@ -27,3 +27,24 @@ def test_mouse_controller_click_cooldown():
     # Ready again after cooldown frames passed
     assert mc._ready_for_click() is True
 
+def test_mouse_controller_relative_move():
+    mc = MouseController(test_mode=True)
+    pos = mc.get_position()
+    assert pos == (960, 540)
+    rel_pos = mc.move_rel(20, -30, screen_size=(1920, 1080))
+    assert rel_pos == (980, 510)
+
+def test_mouse_controller_new_actions():
+    mc = MouseController(test_mode=True)
+    # Test methods execute safely in test_mode without error
+    mc.middle_click()
+    mc.hscroll(100)
+    mc.zoom(5)
+    assert mc.is_ctrl_down is False  # In test_mode, no keys actually pressed
+    mc.release_ctrl()
+    mc.zoom_end()
+    mc.back()
+    mc.forward()
+
+
+

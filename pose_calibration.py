@@ -52,12 +52,12 @@ class PoseManager:
         """Return [Thumb, Index, Middle, Ring, Little] extension states."""
         if not landmarks or len(landmarks) < 21:
             return [False] * 5
-        # Thumb: compare tip to MCP horizontally/vertically
-        thumb_ext = landmarks[4][0] < landmarks[3][0] if landmarks[4][0] < landmarks[17][0] else landmarks[4][0] > landmarks[3][0]
-        index_ext = finger_is_extended(landmarks, 8, 6)
-        middle_ext = finger_is_extended(landmarks, 12, 10)
-        ring_ext = finger_is_extended(landmarks, 16, 14)
-        little_ext = finger_is_extended(landmarks, 20, 18)
+        # Compare distance from wrist (0)
+        thumb_ext = finger_is_extended(landmarks, 4, 2, wrist_idx=WRIST)
+        index_ext = finger_is_extended(landmarks, 8, 6, wrist_idx=WRIST)
+        middle_ext = finger_is_extended(landmarks, 12, 10, wrist_idx=WRIST)
+        ring_ext = finger_is_extended(landmarks, 16, 14, wrist_idx=WRIST)
+        little_ext = finger_is_extended(landmarks, 20, 18, wrist_idx=WRIST)
         return [thumb_ext, index_ext, middle_ext, ring_ext, little_ext]
 
     def capture_pose(self, gesture_name: str, landmarks: List[Tuple[int, int, float]]) -> bool:
