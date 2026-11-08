@@ -1,0 +1,27 @@
+# Python virtual environment
+venv/
+env/
+ENV/
+
+# Byte-compiled / optimized files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Pytest & IDE cache
+.pytest_cache/
+.vscode/
+.idea/
+
+# Large model binaries & local wheels
+*.task
+wheelhouse/
+*.whl
+*.tar.gz
+
+# Local OS & temporary files
+*.tmp
+*.log
+Thumbs.db
+Desktop.ini
+
